@@ -1,0 +1,48 @@
+{% extends 'markdown2html/base.html' %}
+{% load staticfiles %}
+{% block styles %}
+{{ form.media }}
+<link rel="stylesheet" href="{% static 'assets/css/editor.css' %}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'assets/js/editor.js' %}"></script>
+{% endblock %}
+
+{% block nav_title %}Note "{{ note.title }}" Update{% endblock %}
+{% block nav_subtitle %}for {{ note.course.title }}{% endblock %}
+
+{% block body %}
+{% if user.is_superuser %}
+<div class="container-fluid">
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="text-danger small">{{ field.errors }}</span>
+            </div>
+            <div class="col-sm-12">{{ field }}</div>
+        </div>
+        {% endfor %}
+        <div class="from-group">
+            <div class="col-sm-10" id="content-submit">
+                <button type="submit" class="btn btn-success">Save Content</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% else %}
+<div class="container">
+    <h2>Sorry, you do not have access to that!</h2>
+</div>
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+

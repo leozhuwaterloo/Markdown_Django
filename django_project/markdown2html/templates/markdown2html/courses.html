@@ -1,0 +1,52 @@
+{% extends 'markdown2html/base.html' %}
+
+{% block nav_title %}User's Courses{% endblock %}
+{% block nav_subtitle %}University of Waterloo{% endblock %}
+
+{% block body %}
+{% if courses %}
+{% for course in courses %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <a href="{% url 'markdown2html:course_detail' course.course_slug %}"><h2>{{ course.title }}</h2></a>
+            <h3>{{ course.description }}</h3>
+            <h4>Contributor: {{ course.contributor }}</h4>
+            <h5>Date: {{ course.publish }}</h5>
+
+
+            <!-- View Details -->
+            <a href="{% url 'markdown2html:course_detail' course.course_slug %}" class="btn btn-primary btn-sm" role="button">View
+                Course Notes
+            </a>
+
+            <!-- Delete Note -->
+            <a href="{% url 'markdown2html:course_delete' course.course_slug %}" class="btn btn-primary btn-sm" role="button">
+                Delete
+            </a>
+
+            <!-- Update Note -->
+            <a href="{% url 'markdown2html:course_update' course.course_slug %}" class="btn btn-primary btn-sm" role="button">
+                Update
+            </a>
+        </div>
+    </div>
+</div>
+{% cycle '' '' '' '' '' ' <div class="clearfix visible-lg"></div>' %}
+{% endfor %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <h2>Add New Course</h2>
+{% else %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <h2>There is no course</h2>
+{% endif %}
+            <a href="{% url 'markdown2html:course_create' %}" class="btn btn-primary btn-sm" role="button">Create New Course</a>
+        </div>
+    </div>
+</div>
+{% cycle '' '' '' '' '' ' <div class="clearfix visible-lg"></div>' %}
+{% endblock %}

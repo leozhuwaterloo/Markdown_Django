@@ -1,0 +1,58 @@
+.update-latex{
+    position: absolute;
+    right: 51vw;
+    z-index: 100;
+}
+
+#update-latex-button{
+    right: calc(51vw + 90px);
+}
+
+.wmd-panel{
+ margin: 0;
+ width:49vw;
+ min-width:49vw;
+ max-width:49vw;
+ margin: 0.25vw;
+}
+
+.wmd-input, .wmd-preview{
+    height: 90vh;
+}
+
+.wmd-preview-title{
+    display: none;
+}
+
+#id_content-wmd-wrapper{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+
+#preview-title-self{
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 0px;
+    height: 20px;
+}
+
+#content-submit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+#id_content_wmd_preview > :first-child{
+    margin-top : 0;
+}
+
+#id_content_wmd_preview{
+    overflow:auto;
+}

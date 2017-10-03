@@ -1,0 +1,47 @@
+{% extends 'waterlooworks/base.html' %}
+{% load staticfiles %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'assets/css/dataTable.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/sort_table.css' %}">
+{% endblock %}
+
+
+{% block body %}
+<main>
+    <h1>WaterlooWorks Jobs</h1>
+    <table class="table table-condensed table-hover" id="job_table">
+        <thead>
+        <tr>
+            <th class="table_header" style="width: 7%">ID</th>
+            <th class="table_header" style="width: 8%">Icon</th>
+            <th class="table_header" style="width: 21%">Job Title</th>
+            <th class="table_header" style="width: 20%">Organization</th>
+            <th class="table_header" style="width: 15%">Location</th>
+            <th class="table_header" style="width: 15%">Level</th>
+            <th class="table_header" style="width: 8%">Opening</th>
+            <th class="table_header" style="width: 6%">Stock Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td class="id_value">{{ job.fake_id }}</td>
+            <td class="image"><img src="{{ job.job_icon_url }}"/></td>
+            <td class="job_title_value"><a href="{% url 'waterlooworks:job_detail' job.id %}">{{ job.job_title }}</a></td>
+            <td class="organization_value">{{ job.organization }}</td>
+            <td class="location_value">{{ job.region }}</td>
+            <td class="level_value">{{ job.level }}</td>
+            <td class="opening_value">{{ job.number_of_job_openings }}</td>
+            <td class="price">{{ job.organization_price }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'assets/js/dataTable.js' %}"></script>
+<script src="{% static 'assets/js/sort_table.js' %}"></script>
+{% endblock %}

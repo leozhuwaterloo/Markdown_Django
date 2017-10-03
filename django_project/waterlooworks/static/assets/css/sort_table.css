@@ -1,0 +1,61 @@
+body {
+  font-family: "Open Sans", Arial;
+}
+main {
+	max-width: 1000px;
+	margin: 30px auto;
+	padding: 10px 40px 50px;
+	background: #FFF;
+	box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
+#filter {
+	margin-bottom: 1em;
+}
+.pagination {
+	margin: 0 0 1em;
+}
+.table {
+	font-size: 0.9em;
+	table-layout: fixed;
+}
+th.table_header {
+	cursor: pointer;
+}
+th.table_header:hover {
+	background: #EEE;
+}
+.caret-blank {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+}
+.caret-up {
+	border-bottom: 8px solid #333;
+}
+.caret-down {
+	border-top: 8px solid #333;
+}
+
+.form-select, .form-input, #job_table_paginate{
+    margin-bottom: 10px;
+}
+
+.form-select{
+    width: 30%;
+}
+
+.form-input{
+    width: 100%;
+}
+
+#job_table_length{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+#select_description{
+    margin-left: 10px;
+}

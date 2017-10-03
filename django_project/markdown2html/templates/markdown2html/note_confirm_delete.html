@@ -1,0 +1,7 @@
+{% extends 'markdown2html/form.html' %}
+
+{% block title %}Are you sure you want to delete the note?{% endblock %}
+{% block button %}Delete Note{% endblock %}
+
+{% block nav_title %}Delete Note "{{ note.title }}"{% endblock %}
+{% block nav_subtitle %}for {{ note.course.title }}{% endblock %}

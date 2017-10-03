@@ -1,0 +1,59 @@
+{% extends 'markdown2html/base.html' %}
+
+{% block nav_title %}{{ course.title }}{% endblock %}
+{% block nav_subtitle %}{{ course.description }}{% endblock %}
+
+{% block body %}
+
+{% if course.note_set.all.count != 0 %}
+{% for note in notes %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <h2>Quick Preview:</h2>
+        <a href="{% url 'markdown2html:note_detail' course.course_slug note.note_slug %}">
+            <div class="markdown-body" style="height: 200px; overflow:hidden; background-color: #eee">
+                   {{ note.get_markdown }}
+            </div>
+        </a>
+        <div class="caption">
+            <h2>Topic: <a href="{% url 'markdown2html:note_detail' course.course_slug note.note_slug %}">{{ note.title }}</a></h2>
+            <h4>Contributor: {{ note.contributor }}</h4>
+            <h5>Published: {{ note.publish }}</h5>
+            <h5>Last Updated: {{ note.updated }}</h5>
+
+
+            <!-- View Details -->
+            <a href="{% url 'markdown2html:note_detail' course.course_slug note.note_slug %}" class="btn btn-primary btn-sm" role="button">View
+                Note Details
+            </a>
+
+            <!-- Delete Note -->
+            <a href="{% url 'markdown2html:note_delete' course.course_slug note.note_slug %}" class="btn btn-primary btn-sm" role="button">
+                Delete
+            </a>
+
+            <!-- Update Note -->
+            <a href="{% url 'markdown2html:note_update' course.course_slug note.note_slug %}" class="btn btn-primary btn-sm" role="button">
+                Update
+            </a>
+        </div>
+    </div>
+</div>
+{% cycle '' '' '' '' '' ' <div class="clearfix visible-lg"></div>' %}
+{% endfor %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <h2>Add note</h2>
+{% else %}
+<div class="col-sm-4 col-lg-2">
+    <div class="thumbnail">
+        <div class="caption">
+            <h2>There is no notes</h2>
+{% endif %}
+            <a href="{% url 'markdown2html:note_create' course.course_slug%}" class="btn btn-primary btn-sm" role="button">Create New Note</a>
+        </div>
+    </div>
+</div>
+{% cycle '' '' '' '' '' ' <div class="clearfix visible-lg"></div>' %}
+{% endblock %}

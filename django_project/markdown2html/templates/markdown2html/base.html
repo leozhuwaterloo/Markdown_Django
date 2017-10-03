@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown</title>
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/directory.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/title.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/markdown.css' %}">
+    {% block styles %}
+    {% endblock %}
+</head>
+
+<body style="background: url(&quot;{% static 'assets/img/background.png' %}&quot;);">
+<div class="box">
+    <div id="menu-button">
+        <span class="mobile-menu-3">
+            <span class="line-1"></span>
+            <span class="line-2"></span>
+            <span class="line-3"></span>
+        </span>
+    </div>
+    <ul class="directory-list">
+        <li><a href="{% url 'markdown2html:index' %}">Courses</a><span
+                class="icon plus-to-minus directory-toggle minus"></span>
+            <ul>
+                {% for course in global_courses %}
+                <li><a href="{% url 'markdown2html:course_detail' course.course_slug %}">{{ course.title }}</a><span
+                        class="icon plus-to-minus directory-toggle minus"></span>
+                    <ul>
+                        {% for note in course.note_set.all %}
+                        <li><a href="{% url 'markdown2html:note_detail' course.course_slug note.note_slug%}">{{ note.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</div>
+<div id="title">
+    <div class="container">
+        <div id="title-text">{% block nav_title %}{% endblock %}</div>
+        <div id="subtitle-text">{% block nav_subtitle %}{% endblock %}</div>
+    </div>
+</div>
+{% block body %}
+{% endblock %}
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/directory.js' %}"></script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath:[['$', '$']], displayMath:[['$$','$$'], ['\[','\]']]},
+        TeX: {
+            Macros: {
+                RR: "{\\mathbb{R}}",
+                CC: "{\\mathbb{C}}",
+                NN: "{\\mathbb{N}}",
+                QQ: "{\\mathbb{Q}}",
+                FF: "{\\mathbb{F}}",
+                abs: ["{\\left| #1 \\right| }", 1],
+            },
+        },
+    });
+
+
+    function getInputSelection(el) {
+        var start = 0, end = 0, normalizedValue, range,
+            textInputRange, len, endRange;
+
+        if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+            start = el.selectionStart;
+            end = el.selectionEnd;
+        } else {
+            range = document.selection.createRange();
+
+            if (range && range.parentElement() == el) {
+                len = el.value.length;
+                normalizedValue = el.value.replace(/\r\n/g, "\n");
+
+                // Create a working TextRange that lives only in the input
+                textInputRange = el.createTextRange();
+                textInputRange.moveToBookmark(range.getBookmark());
+
+                // Check if the start and end of the selection are at the very end
+                // of the input, since moveStart/moveEnd doesn't return what we want
+                // in those cases
+                endRange = el.createTextRange();
+                endRange.collapse(false);
+
+                if (textInputRange.compareEndPoints("StartToEnd", endRange) > -1) {
+                    start = end = len;
+                } else {
+                    start = -textInputRange.moveStart("character", -len);
+                    start += normalizedValue.slice(0, start).split("\n").length - 1;
+
+                    if (textInputRange.compareEndPoints("EndToEnd", endRange) > -1) {
+                        end = len;
+                    } else {
+                        end = -textInputRange.moveEnd("character", -len);
+                        end += normalizedValue.slice(0, end).split("\n").length - 1;
+                    }
+                }
+            }
+        }
+
+        return {
+            start: start,
+            end: end
+        };
+    }
+
+    function offsetToRangeCharacterMove(el, offset) {
+        return offset - (el.value.slice(0, offset).split("\r\n").length - 1);
+    }
+
+    function setInputSelection(el, startOffset, endOffset) {
+        if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+            el.selectionStart = startOffset;
+            el.selectionEnd = endOffset;
+        } else {
+            var range = el.createTextRange();
+            var startCharMove = offsetToRangeCharacterMove(el, startOffset);
+            range.collapse(true);
+            if (startOffset == endOffset) {
+                range.move("character", startCharMove);
+            } else {
+                range.moveEnd("character", offsetToRangeCharacterMove(el, endOffset));
+                range.moveStart("character", startCharMove);
+            }
+            range.select();
+        }
+    }
+
+    var timeout;
+    $('#id_content').bind('input propertychange', function(){
+        clearTimeout(timeout);
+        if($("#update-latex-button").is(':checked')){
+            timeout = setTimeout(function(){
+                MathJax.Hub.Queue(["Typeset",MathJax.Hub,"id_content_wmd_preview"]);
+            },400);
+        }
+        var objDiv = document.getElementById("id_content_wmd_preview");
+        objDiv.scrollTop = objDiv.scrollHeight;
+
+        var id_content = document.getElementById("id_content");
+        var sel = getInputSelection(id_content);
+        var str = id_content.value;
+        id_content.value = str.replace(/(\$)(.+)(\<|\>)(\w)(.+)(\$)/, '$1$2$3 $4$5$6');
+        if(str!=id_content.value)
+            setInputSelection(id_content, sel.start+1, sel.end+1);
+    });
+
+</script>
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>

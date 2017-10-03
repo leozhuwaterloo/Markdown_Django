@@ -1,0 +1,21 @@
+{% extends 'markdown2html/base.html' %}
+{% load staticfiles %}
+{% block nav_title %}Note "{{ note.title }}"{% endblock %}
+{% block nav_subtitle %}for {{ note.course.title }}{% endblock %}
+
+{% block body %}
+<div id="theorem-counter" style="display:none;">{{ theorem_counter }}</div>
+
+<div class="container markdown-body">
+    {{ note.get_markdown }}
+</div>
+<div class="container">
+    <a href="{% url 'markdown2html:note_content_update' note.course.course_slug note.note_slug %}" class="btn btn-primary btn-sm update-content-button" role="button">
+        Update Content
+    </a>
+</div>
+{% endblock %}
+
+{% block scripts%}
+<script src="{% static 'assets/js/markdown-counter.js' %}"></script>
+{% endblock %}

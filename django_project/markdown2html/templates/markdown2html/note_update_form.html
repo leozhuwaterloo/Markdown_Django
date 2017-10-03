@@ -1,0 +1,11 @@
+{% extends 'markdown2html/form.html' %}
+
+{% block title %}Please fill out the updated information for the note:{% endblock %}
+{% block button %}Update Note{% endblock %}
+
+{% block nav_title %}Note "{{ note.title }}" Update{% endblock %}
+{% block nav_subtitle %}for {{ note.course.title }}{% endblock %}
+
+{% block styles %}
+{{ form.media }}
+{% endblock %}

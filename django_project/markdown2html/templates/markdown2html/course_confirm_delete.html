@@ -1,0 +1,7 @@
+{% extends 'markdown2html/form.html' %}
+
+{% block title %}Are you sure you want to delete the course "{{ course.title }}"?{% endblock %}
+{% block button %}Delete Course{% endblock %}
+
+{% block nav_title %}Delete The Entire Course?{% endblock %}
+{% block nav_subtitle %}{{ course.title }}{% endblock %}

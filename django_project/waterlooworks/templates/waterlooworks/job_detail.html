@@ -1,0 +1,220 @@
+{% extends 'waterlooworks/base.html' %}
+
+{% block body %}
+<div class="container">
+    {% if job.fake_id %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">ID:</h3></div>
+        <div class="panel-body">{{ job.fake_id }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.organization %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Organization:</h3></div>
+        <div class="panel-body">{{ job.organization }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.work_term %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Work Term</h3></div>
+        <div class="panel-body">{{ job.work_term }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.region %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Region:</h3></div>
+        <div class="panel-body">{{ job.region }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_title %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Title:</h3></div>
+        <div class="panel-body">{{ job.job_title }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_Category_noc %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Category (NOC):</h3></div>
+        <div class="panel-body">{{ job.job_Category_noc }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.level %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Level:</h3></div>
+        <div class="panel-body">{{ job.level }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.number_of_job_openings %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Number of Job Openings:</h3></div>
+        <div class="panel-body">{{ job.number_of_job_openings }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_type %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Type:</h3></div>
+        <div class="panel-body">{{ job.job_type }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_address_line_one %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - Address Line One:</h3></div>
+        <div class="panel-body">{{ job.job_address_line_one }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_address_line_two %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - Address Line Two:</h3></div>
+        <div class="panel-body">{{ job.job_address_line_two }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_city %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - City:</h3></div>
+        <div class="panel-body">{{ job.job_city }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_province_state %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - Province / State:</h3></div>
+        <div class="panel-body">{{ job.job_province_state }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_postal_code_zip_code_xx_x %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - Postal Code / Zip Code (X#X #X#):</h3></div>
+        <div class="panel-body">{{ job.job_postal_code_zip_code_xx_x }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.division %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Division:</h3></div>
+        <div class="panel-body">{{ job.division }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_country %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job - Country:</h3></div>
+        <div class="panel-body">{{ job.job_country }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_Location_if_exact_address_unknown_or_multiple_locations %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Location (if exact address unknown or multiple
+            locations):</h3></div>
+        <div class="panel-body">{{ job.job_Location_if_exact_address_unknown_or_multiple_locations }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.work_Term_duration %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Work Term Duration:</h3></div>
+        <div class="panel-body">{{ job.work_Term_duration }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.special_job_requirements %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Special Job Requirements:</h3></div>
+        <div class="panel-body">{{ job.special_job_requirements }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_summary %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Summary:</h3></div>
+        <div class="panel-body">{{ job.job_summary }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.job_responsibilities %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Job Responsibilities:</h3></div>
+        <div class="panel-body">{{ job.job_responsibilities }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.required_skills %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Required Skills:</h3></div>
+        <div class="panel-body">{{ job.required_skills }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.targeted_degrees_and_disciplines %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Targeted Degrees and Disciplines:</h3></div>
+        <div class="panel-body">{{ job.targeted_degrees_and_disciplines }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.application_documents_required %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Application Documents Required:</h3></div>
+        <div class="panel-body">{{ job.application_documents_required }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.compensation_and_benefits_information %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Compensation and Benefits Information:</h3></div>
+        <div class="panel-body">{{ job.compensation_and_benefits_information }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.transportation_and_housing %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Transportation and Housing:</h3></div>
+        <div class="panel-body">{{ job.transportation_and_housing }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.employer_internal_job_number %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Employer Internal Job Number:</h3></div>
+        <div class="panel-body">{{ job.employer_internal_job_number }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.additional_information %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Additional Information:</h3></div>
+        <div class="panel-body">{{ job.additional_information }}</div>
+    </div>
+    {% endif %}
+
+
+    {% if job.additional_application_information %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Additional Application Information:</h3></div>
+        <div class="panel-body">{{ job.additional_application_information }}</div>
+    </div>
+    {% endif %}
+
+    {% if job.additional_Job_identifiers %}
+    <div class="panel panel-primary">
+        <div class="panel-heading"><h3 class="panel-title">Additional Job Identifiers:</h3></div>
+        <div class="panel-body">{{ job.additional_Job_identifiers }}</div>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}
+
