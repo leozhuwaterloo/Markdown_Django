@@ -49,7 +49,7 @@ def get_company_icon_url(job):
     company_url = ""
     try:
         print("Attempting to get " + company_name)
-        service = build("customsearch", "v1", developerKey="AIzaSyA6pJksHfPA9T6LrI0X1Hg3YHXeJKkKjIc")
+        service = build("customsearch", "v1", developerKey="")
         results = service.cse().list(
             q=company_name,
             cx='015115731645511862899:a5yftjbitis',
